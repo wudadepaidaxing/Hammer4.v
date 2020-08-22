@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/loginPale.css"/>
+	    <link rel="stylesheet" type="text/css" href="css/font_iupnaa6dxmb/iconfont.css"/>
+	 </head>
+	<body>
+		<!-- 登录表单 -->
+		<div id="login">
+			<div class="loginLogo">
+				<h4>使用 Smartisan ID 登录官网</h4>
+			</div>
+			<div class="loginCheck">
+				 <div class="loginForm">
+				 	<ul>
+						<!-- 第一个二级联动 -->
+				 		<li class="form1">
+							<span class="pinter">
+								<p class="iconfont icon-xt5-copy"></p>
+							</span>
+							<span class="articl">
+								国家和地区
+							</span>
+							<span class="articalChange">
+							  中国
+							</span>
+							<span class="change">
+								<img src="img/ic_change_7ce7ba3a23@2x.png" >
+							</span>
+						</li>
+						<!-- 这里需要一个与国家相应的开头二级联动 -->
+						<li class="form2">
+							<span class="pinter">
+								<p class="iconfont icon-icon_principal"></p>
+							</span>
+							<span class="number">
+								+86
+							</span>
+							<!-- 账号 -->
+							<input type="text" placeholder="手机号" />
+
+						</li>
+						<!-- 密码 -->
+						<li class="form3">
+							<span class="pinter">
+								<p class="iconfont icon-yuechi"></p>
+							</span>
+							<!-- 密码 -->
+							<input type="text" placeholder="密码" />
+						</li>
+						<li class="part">
+							<span class="p1">
+								<img src="img/checkbox_f49f6e4acf.png" id="img">
+							</span>
+							<span class="p2">
+								自动登录
+							</span>
+							<span class="p3">
+								短信验证码登录
+							</span>
+							<span class="p4">
+								注册
+							</span>
+							<span class="p5">
+								忘记密码？
+							</span>
+						</li>
+				 	</ul>
+			</div>
+		   </div>
+		      <!-- 登录按钮 -->
+			<div class="button">
+		    	登录
+		    </div>
+			<div class="other">
+				<span class="o1">其他账号登陆：</span>
+				<span class="o2" ><img src="./img/icons_c3a3154da5.png" ></span>
+				<span class="o3">普通登录&nbsp; ></span>
+			</div>
+			<div class="bot">
+				<span style="font-size: 12px; color: #969896;">登录代表你已同意</span>
+				<a href="" style="font-size: 12px;">用户协议</a>和
+				<a href="" style="font-size: 12px;">隐私政策</a>
+			</div>
+		</div>
+	    <!--信息  -->
+		<div id="formation">
+			<p class="f1">Copyright © 2020 smartisan.com 版权所有</p>
+		    <p class="f2">京 ICP 备 18020659 号 - 2</p>
+		</div>
+	</body>
+</html>
+<script src="js/new_file.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/encapsulation.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	let oInput = document.querySelectorAll("input");
+	let Oimg = document.getElementById("img");
+	let oBtn =document.getElementsByClassName("button")[0];
+	function move(value1,value2){
+		document.cookie = value1+"="+oInput[0].value;
+		document.cookie = value2+"="+oInput[1].value;
+	}
+	Oimg.onclick=function(){
+		if(Oimg.offsetTop==0){
+		  Oimg.style.top="-20px";
+		}else if(Oimg.offsetTop==-20){
+			 Oimg.style.top="0";
+		}
+		
+	}
+	oBtn.onclick = function(){
+		     if(Oimg.offsetTop==0){
+				console.log("hah")
+				let date = new Date();
+				date.setDate(date.getDate()+30);
+				move("name","pwd");
+				location.href = "firstPage.html"; 
+			 }else if(Oimg.offsetTop==-20){ 
+				 console.log("lal")
+				move("name","pwd");
+				location.href = "firstPage.html";
+				 delCookie("name");
+				 delCookie("pwd");
+			}
+		}	
+	//自动登录
+		function fun(){
+			let strCookie = document.cookie;
+			let arrCookie = strCookie.split("; ");
+			let flagName = false;
+			let flagpwd = false;
+			for (let i = 0; i < arrCookie.length; i++) {
+				let item = arrCookie[i].split('=');
+				console.log(item)
+				if ("name" == item[0] ) {
+					flagName = true;
+				}
+				if ("pwd" == item[0]) {
+					flagpwd = true;
+				}
+			}
+			if (flagName && flagpwd) {
+				location.href = "firstPage.html";
+			} 
+		}
+		fun();
+	
+</script>
